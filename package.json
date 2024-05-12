@@ -1,5 +1,5 @@
 {
-  "name": "Basic TODO application",
+  "name": "accomplishements_calendar_backend",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -13,12 +13,14 @@
   "license": "ISC",
   "dependencies": {
     "@types/mongoose": "^5.11.97",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
     "nodemon": "^3.1.0",

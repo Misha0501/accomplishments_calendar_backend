@@ -1,30 +1,20 @@
-import express, { Express, Request, Response } from "express";
-import dotenv from "dotenv";
-import userRoutes from './routes/userRoutes';
-import iteratorRoutes from './routes/iteratorRoutes';
-import connectDB from './db/mongoose';
+import 'dotenv/config';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import daysRouter from './controllers/daysController';
+import DatabaseService from './services/database.service';
 
-dotenv.config();
+const app = express();
+const port = process.env.PORT || 3000; // Use environment variable or default
 
-const app: Express = express();
-const port = process.env.PORT || 3000;
+app.use(cors());
+app.use(bodyParser.json());
 
-// configure the Express app to parse JSON-formatted request bodies
-app.use(express.json());
+app.use('/api/days', daysRouter);
 
-// define the user routes
-app.use(userRoutes);
-
-// define the iterator routes
-app.use(iteratorRoutes);
-
-app.get("/", (req: Request, res: Response) => {
-    res.send("Express + TypeScript Server Misha");
-});
-
-// Connect to MongoDB then start the server
-connectDB().then(() => {
+DatabaseService.getInstance().connect().then(() => {
     app.listen(port, () => {
-        console.log(`Server running on port ${port}`);
+        console.log(`Server running on http://localhost:${port}`);
     });
 });
