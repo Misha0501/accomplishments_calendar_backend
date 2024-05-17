@@ -6,6 +6,7 @@ import dayRoutes from './routes/dayRoutes';
 import {connectDB} from './services/database.service';
 import {initializePassport} from "./config/passport-config";
 import authRoutes from "./routes/authRoutes";
+import calendarRoutes from "./routes/calendarRoutes";
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable or default
@@ -18,6 +19,9 @@ initializePassport();
 app.use('/auth', authRoutes);
 
 app.use('/api/days', dayRoutes);
+
+app.use('/calendars', calendarRoutes);
+
 
 connectDB().then(() => {
     app.listen(port, () => {

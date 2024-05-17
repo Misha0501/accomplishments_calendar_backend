@@ -2,13 +2,16 @@ import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 export interface IUser extends Document {
+    _id: Schema.Types.ObjectId;
     email: string;
     password: string;
+    calendars: Schema.Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>({
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    calendars: [{ type: Schema.Types.ObjectId, ref: 'Calendar' }]
 });
 
 userSchema.pre<IUser>('save', async function(next) {
