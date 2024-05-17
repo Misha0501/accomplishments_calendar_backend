@@ -1,18 +1,12 @@
-import { Router } from 'express';
-import {getDays, toggleDay} from "../models/dayModel";
+import {Router} from 'express';
+import {get, toggle} from '../controllers/daysController';
 
 const router = Router();
 
+router.route('/').get(get);
 
+router.route('/toggle').post(toggle);
 
-router.get('/', async (req, res) => {
-    res.json(await getDays());
-});
-
-router.post('/toggle', async (req, res) => {
-    const { index } = req.body;
-    await toggleDay(index);
-
-    res.json({ status: 'Success' });
-});
+// export default app
 export default router;
+

@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import daysRouter from './controllers/daysController';
+import daysRouter from './routes/daysRouter';
 import DatabaseService from './services/database.service';
 
 const app = express();
