@@ -7,14 +7,14 @@ export const createCalendar = async (req: Request, res: Response) => {
     const { name } = req.body;
     const user = req.user;  // TypeScript should now recognize the type of `req.user`
 
-    const currentYear = new Date().getFullYear();
-
     if (!user) {
         return res.status(401).json({ message: 'No authenticated user' });
     }
 
+    const currentYear = new Date().getFullYear();
+
     // @ts-ignore
-    const userId = user._id;
+    const userId = user._id; // Assume _id exists based on user authentication and type definition
 
     try {
         const newCalendar = new Calendar({
@@ -30,7 +30,14 @@ export const createCalendar = async (req: Request, res: Response) => {
         }));
         await Day.insertMany(days);
 
-        res.status(201).json({ message: 'Calendar created successfully', calendar: savedCalendar });
+        // Retrieve the created days to include in the response
+        const createdDays = await Day.find({ calendar: savedCalendar._id });
+
+        res.status(201).json({
+            message: 'Calendar created successfully',
+            calendar: savedCalendar,
+            days: createdDays  // Include days in the response
+        });
     } catch (error) {
         console.error('Failed to create calendar:', error);
         res.status(500).json({ message: 'Failed to create calendar', error: error.message });
