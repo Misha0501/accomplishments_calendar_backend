@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {get, toggle} from '../controllers/daysController';
+import {get, toggle} from '../controllers/dayController';
 
 const router = Router();
 
