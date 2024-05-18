@@ -1,7 +1,10 @@
-import { IUser } from '../models/User';
+// src/types/express/index.d.ts
+import * as admin from 'firebase-admin';
 
 declare global {
     namespace Express {
-        interface User extends IUser {}  // Extends Express' User interface with our IUser interface
+        interface Request {
+            user?: admin.auth.DecodedIdToken;
+        }
     }
 }

@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dayRoutes from './routes/dayRoutes';
 import {connectDB} from './services/database.service';
-import {initializePassport} from "./config/passport-config";
 import authRoutes from "./routes/authRoutes";
 import calendarRoutes from "./routes/calendarRoutes";
 
@@ -13,8 +12,6 @@ const port = process.env.PORT || 3000; // Use environment variable or default
 
 app.use(cors());
 app.use(bodyParser.json());
-
-initializePassport();
 
 app.use('/auth', authRoutes);
 
