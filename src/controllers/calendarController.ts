@@ -43,3 +43,22 @@ export const createCalendar = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Failed to create calendar', error: error.message });
     }
 };
+
+export const getUserCalendars = async (req: Request, res: Response) => {
+    const user = req.user;  // TypeScript should now recognize the type of `req.user`
+
+    if (!user) {
+        return res.status(401).json({ message: 'No authenticated user' });
+    }
+
+    // @ts-ignore
+    const userId = user.uid;
+
+    try {
+        const calendars = await Calendar.find({ user: userId });
+        res.status(200).json(calendars);
+    } catch (error) {
+        console.error('Failed to fetch calendars:', error);
+        res.status(500).json({ message: 'Failed to fetch calendars', error: error.message });
+    }
+};
