@@ -1,12 +1,11 @@
-import {Router} from 'express';
-import {get, toggle} from '../controllers/dayController';
+import { Router } from 'express';
+import { get, toggle } from '../controllers/dayController';
+import { checkAuth } from '../middleware/auth';
 
 const router = Router();
 
 router.route('/').get(get);
 
-router.route('/toggle').post(toggle);
+router.route('/toggle').post(checkAuth, toggle);
 
-// export default app
 export default router;
-

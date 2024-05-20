@@ -1,19 +1,17 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IDay extends Document {
-    day: string;
+interface IDay extends Document {
     date: string;
+    day: string;
     isActive: boolean;
-    calendar: Schema.Types.ObjectId;
+    calendar: mongoose.Types.ObjectId; // Reference to the calendar
 }
 
-export const daySchema = new Schema<IDay>({
+const DaySchema: Schema = new Schema({
     day: { type: String, required: true },
     date: { type: String, required: true },
-    isActive: { type: Boolean, required: true, default: false },
-    calendar: { type: Schema.Types.ObjectId, ref: 'Calendar' }
+    isActive: { type: Boolean, default: false },
+    calendar: { type: mongoose.Types.ObjectId, ref: 'Calendar', required: true } // Reference to calendar
 });
 
-const Day = mongoose.model<IDay>('Day', daySchema);
-
-export default Day;
+export default mongoose.model<IDay>('Day', DaySchema);
