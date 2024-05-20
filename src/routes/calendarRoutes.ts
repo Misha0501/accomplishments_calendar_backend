@@ -1,6 +1,6 @@
 import express from 'express';
 import { createCalendar } from '../controllers/calendarController';
-import {checkAuth} from "../middleware/auth";
+import { checkAuth } from '../middleware/auth';
 
 const router = express.Router();
 

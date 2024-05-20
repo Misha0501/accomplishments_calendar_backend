@@ -14,7 +14,7 @@ export const createCalendar = async (req: Request, res: Response) => {
     const currentYear = new Date().getFullYear();
 
     // @ts-ignore
-    const userId = user._id; // Assume _id exists based on user authentication and type definition
+    const userId = user.uid; // Use `uid` from Firebase token
 
     try {
         const newCalendar = new Calendar({

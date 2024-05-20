@@ -1,16 +1,17 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import {daySchema, IDay} from './Day';  // Ensure you use the named export
 
 export interface ICalendar extends Document {
     name: string;
-    user: Schema.Types.ObjectId;
-    days: IDay[];
+    user: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 const calendarSchema = new Schema({
     name: { type: String, required: true },
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    days: [daySchema]
+    user: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
 });
 
 const Calendar = mongoose.model<ICalendar>('Calendar', calendarSchema);

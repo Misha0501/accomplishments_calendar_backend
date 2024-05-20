@@ -17,7 +17,7 @@ app.use('/auth', authRoutes);
 
 app.use('/api/days', dayRoutes);
 
-app.use('/calendars', calendarRoutes);
+app.use('/api/calendars', calendarRoutes);
 
 
 connectDB().then(() => {
