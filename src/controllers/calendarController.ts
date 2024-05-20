@@ -83,7 +83,7 @@ export const getCalendarDays = async (req: Request, res: Response) => {
         }
 
         const days = await Day.find({ calendar: id });
-        res.status(200).json(days);
+        res.status(200).json({ days, calendarName: calendar.name });
     } catch (error) {
         console.error('Failed to fetch days:', error);
         res.status(500).json({ message: 'Failed to fetch days', error: error.message });
