@@ -8,8 +8,8 @@ interface IDay extends Document {
 }
 
 const DaySchema: Schema = new Schema({
-    day: { type: String, required: true },
     date: { type: String, required: true },
+    day: { type: String, required: true },
     isActive: { type: Boolean, default: false },
     calendar: { type: mongoose.Types.ObjectId, ref: 'Calendar', required: true } // Reference to calendar
 });

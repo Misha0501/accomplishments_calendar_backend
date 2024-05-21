@@ -4,8 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dayRoutes from './routes/dayRoutes';
 import {connectDB} from './services/database.service';
-import authRoutes from "./routes/authRoutes";
 import calendarRoutes from "./routes/calendarRoutes";
+import userRoutes from "./routes/userRoutes";
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable or default
@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000; // Use environment variable or default
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 app.use('/api/days', dayRoutes);
 
