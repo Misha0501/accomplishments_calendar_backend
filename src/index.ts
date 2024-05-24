@@ -2,7 +2,6 @@ import 'dotenv/config';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import dayRoutes from './routes/dayRoutes';
 import {connectDB} from './services/database.service';
 import calendarRoutes from "./routes/calendarRoutes";
 import userRoutes from "./routes/userRoutes";
@@ -15,10 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', userRoutes);
 
-app.use('/api/days', dayRoutes);
-
 app.use('/api/calendars', calendarRoutes);
-
 
 connectDB().then(() => {
     app.listen(port, () => {
